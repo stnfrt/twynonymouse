@@ -1,4 +1,4 @@
-package id.twynonymouse.home.viewmodel
+package id.twynonymouse.ui.home.viewmodel
 
 import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import javax.inject.Inject

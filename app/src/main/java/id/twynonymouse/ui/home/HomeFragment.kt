@@ -1,16 +1,18 @@
-package id.twynonymouse.home
+package id.twynonymouse.ui.home
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import co.zsmb.rainbowcake.base.RainbowCakeFragment
 import co.zsmb.rainbowcake.dagger.getViewModelFromFactory
-import id.twynonymouse.R
+import id.twynonymouse.ui.home.viewmodel.HomeViewState
+import id.twynonymouse.ui.home.viewmodel.Initial
+import id.twynonymouse.ui.home.viewmodel.Loading
+import id.twynonymouse.ui.home.viewmodel.UserReady
 import id.twynonymouse.databinding.FragmentHomeBinding
-import id.twynonymouse.home.viewmodel.*
+import id.twynonymouse.ui.home.viewmodel.*
 import kotlin.Error
 
 class HomeFragment : RainbowCakeFragment<HomeViewState, HomeViewModel>(){
