@@ -1,4 +1,4 @@
-package id.twynonymouse.core.model
+package id.twynonymouse.core.model.response
 
 data class User(
     val id: Long,

@@ -1,8 +1,11 @@
 package id.twynonymouse.ui.auth.viewmodel
 
+import id.twynonymouse.core.model.response.BaseResponse
+import id.twynonymouse.core.model.response.LoginResponse
+
 sealed class LoginViewState
 
 object Initial : LoginViewState()
 object Loading : LoginViewState()
 class Error(val errorMessage: String?) : LoginViewState()
-data class Success(val message: String) : LoginViewState()
+data class Success(val data: BaseResponse<LoginResponse>) : LoginViewState()

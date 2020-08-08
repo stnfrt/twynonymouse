@@ -36,6 +36,7 @@ dependencies {
     val daggerVersion = "2.15"
     val retrofitVersion = "2.9.0"
     val constraintLayoutVersion = "1.1.3"
+    val roomVersion = "2.2.5"
 
     api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     api("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
@@ -52,4 +53,9 @@ dependencies {
 
     api("com.squareup.retrofit2:retrofit:$retrofitVersion")
     api("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
+    //room
+    api("androidx.room:room-runtime:$roomVersion")
+    api("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 }

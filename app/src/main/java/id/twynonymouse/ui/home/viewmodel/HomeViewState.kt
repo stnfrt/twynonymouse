@@ -1,6 +1,6 @@
 package id.twynonymouse.ui.home.viewmodel
 
-import id.twynonymouse.core.model.User
+import id.twynonymouse.core.model.response.User
 
 sealed class HomeViewState
 

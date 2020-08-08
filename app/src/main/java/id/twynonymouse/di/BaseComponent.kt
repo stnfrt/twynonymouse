@@ -15,7 +15,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         BaseModule::class,
         RainbowCakeModule::class,
-        ViewModelModule::class
+        ViewModelModule::class,
+        ActivityModule::class
     ]
 )
 interface BaseComponent : RainbowCakeComponent {

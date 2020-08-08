@@ -12,8 +12,7 @@ class HomeViewModel @Inject constructor(
     fun load() = execute {
         try {
             viewState = Loading
-            viewState =
-                UserReady(homePresenter.getData())
+            viewState = UserReady(homePresenter.getData())
         } catch (e: Exception) {
             viewState = Error(e.message)
         }

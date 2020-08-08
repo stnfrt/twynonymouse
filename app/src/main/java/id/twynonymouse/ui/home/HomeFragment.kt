@@ -46,9 +46,6 @@ class HomeFragment : RainbowCakeFragment<HomeViewState, HomeViewModel>(){
 
     override fun render(viewState: HomeViewState) {
         when(viewState){
-            is Initial -> {
-                binding.textMe.text = "Init"
-            }
             is Loading -> {
                 binding.textMe.text = "Wait"
             }

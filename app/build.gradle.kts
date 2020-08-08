@@ -17,6 +17,7 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -38,6 +39,17 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/*.kotlin_module")
+    }
 }
 
 kapt {
@@ -50,6 +62,7 @@ dependencies {
     val rainbowCakeVersion = "1.0.0"
     val coroutinesVersion = "1.3.7"
     val daggerVersion = "2.15"
+    val roomVersion = "2.2.5"
 
     //module
     api(project(":core"))
@@ -66,6 +79,8 @@ dependencies {
 
     kapt("com.google.dagger:dagger-android-processor:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
+    api("androidx.room:room-compiler:$roomVersion")
+
 
     api("io.coil-kt:coil:0.11.0")
 

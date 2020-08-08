@@ -42,8 +42,8 @@ class LoginFragment : RainbowCakeFragment<LoginViewState, LoginViewModel>() {
             }
             is Success -> {
                 binding.btnLogin.isEnabled = true
-                if (viewState.message == "true") navigator?.replace(HomeFragment())
-                else Toast.makeText(context, viewState.message, Toast.LENGTH_SHORT).show()
+                if (viewState.data.data?.token?.isNotBlank() == true) navigator?.replace(HomeFragment())
+                else Toast.makeText(context, viewState.data.message, Toast.LENGTH_SHORT).show()
             }
         }
     }
