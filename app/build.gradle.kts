@@ -1,9 +1,21 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
+val consumerString =  "TWITTER_CONSUMER"
+val consumerSecretString =  "TWITTER_CONSUMER_SECRET"
+val tokenString =  "TWITTER_TOKEN"
+val tokenSecretString ="TWITTER_TOKEN_SECRET"
+
+val consumer = gradleLocalProperties(rootDir).getProperty(consumerString)
+val consumerSecret = gradleLocalProperties(rootDir).getProperty(consumerSecretString)
+val token = gradleLocalProperties(rootDir).getProperty(tokenString)
+val tokenSecret = gradleLocalProperties(rootDir).getProperty(tokenSecretString)
 
 android {
     compileSdkVersion(30)
@@ -24,9 +36,19 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
             )
+            buildConfigField("String", consumerString, consumer)
+            buildConfigField("String", consumerSecretString, consumerSecret)
+            buildConfigField("String", tokenString, token)
+            buildConfigField("String", tokenSecretString, tokenSecret)
+        }
+        getByName("debug"){
+            buildConfigField("String", consumerString, consumer)
+            buildConfigField("String",consumerSecretString, consumerSecret)
+            buildConfigField("String", tokenString, token)
+            buildConfigField("String", tokenSecretString, "$tokenSecret")
         }
     }
 
@@ -76,6 +98,9 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
+    //google
+    implementation("com.google.firebase:firebase-auth:19.3.2")
 
     kapt("com.google.dagger:dagger-android-processor:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
