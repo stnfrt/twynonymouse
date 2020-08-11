@@ -18,11 +18,6 @@ class MainActivity : SimpleNavActivity() {
         super.onCreate(savedInstanceState)
         AndroidInjection.inject(this)
         setContentView(R.layout.activity_main)
-
-        if (savedInstanceState == null) {
-            if (pref.getUser().token.isNullOrBlank())
-            navigator.add(LoginFragment())
-            else navigator.add(HomeFragment())
-        }
+        navigator.add(LoginFragment())
     }
 }
