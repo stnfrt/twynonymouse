@@ -35,7 +35,6 @@ dependencies {
     val kotlinVersion = "1.3.72"
     val daggerVersion = "2.15"
     val retrofitVersion = "2.9.0"
-    val constraintLayoutVersion = "1.1.3"
     val roomVersion = "2.2.5"
 
     val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:3.8.0"
@@ -46,9 +45,6 @@ dependencies {
     api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     api("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     api("androidx.core:core-ktx:1.3.1")
-    api("androidx.appcompat:appcompat:1.2.0")
-    api("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
-
 
     //hilt di
     api("com.google.dagger:dagger-android:$daggerVersion")

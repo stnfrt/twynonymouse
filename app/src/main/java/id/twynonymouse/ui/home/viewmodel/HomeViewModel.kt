@@ -17,6 +17,7 @@ class HomeViewModel @Inject constructor(
         try {
             viewState = LoadingUser
             viewState = UserReady(homePresenter.getData())
+            refreshTweetList()
         } catch (e: Exception) {
             viewState = ErrorLoadUser(e.message)
         }
@@ -26,11 +27,25 @@ class HomeViewModel @Inject constructor(
         try {
             viewState = ProcessPostTweet
             viewState = SuccessPostTweet(homePresenter.postTweet(newTweet))
+            refreshTweetList()
         }catch (e: Throwable) {
             var errMessage = e.message
             if (e is HttpException) Gson().fromJson(e.response()?.errorBody()?.string().default(), ErrorResponse::class.java)
                 .let { errMessage = it.errors?.map { it?.message }.toString()}
             viewState = ErrorPostTweet(errMessage)
+        }
+    }
+
+
+    private fun refreshTweetList()  = execute{
+        try {
+            viewState = LoadingGetTweetList
+            viewState = SuccessGetTweetList(homePresenter.getListTweet())
+        }catch (e:Throwable){
+            var errMessage = e.message
+            if (e is HttpException) Gson().fromJson(e.response()?.errorBody()?.string().default(), ErrorResponse::class.java)
+                .let { errMessage = it.errors?.map { it?.message }.toString()}
+            viewState = ErrorGetTweetList(errMessage)
         }
     }
 }

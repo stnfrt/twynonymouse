@@ -11,4 +11,6 @@ class HomePresenter @Inject constructor(private val userInteract: UserInteract) 
     }
 
     suspend fun postTweet(newTweet: String) = userInteract.postTweet(newTweet)
+
+    suspend fun getListTweet() = userInteract.getListTweet()
 }

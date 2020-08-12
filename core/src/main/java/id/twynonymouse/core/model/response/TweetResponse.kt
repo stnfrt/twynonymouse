@@ -5,5 +5,14 @@ data class TweetResponse(
     val id_str: String? = null,
     val text: String? = null,
     val truncated: Boolean? = null,
-    val source: String? = null
-)
+    val extended_entities: ExtendedEntities? = null
+) {
+    data class ExtendedEntities(
+        val media : List<Media?>? = listOf()
+    ) {
+        data class Media(
+            val media_url_https : String? = null
+        )
+
+    }
+}

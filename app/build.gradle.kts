@@ -89,6 +89,13 @@ dependencies {
     val coroutinesVersion = "1.3.7"
     val daggerVersion = "2.15"
     val roomVersion = "2.2.5"
+    val constraintLayoutVersion = "1.1.3"
+
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+
 
     //module
     api(project(":core"))
