@@ -38,6 +38,11 @@ dependencies {
     val constraintLayoutVersion = "1.1.3"
     val roomVersion = "2.2.5"
 
+    val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:3.8.0"
+    val okhttp = "com.squareup.okhttp3:okhttp:4.2.1"
+    val okhttpSignpost = "se.akerfeldt:okhttp-signpost:1.1.0"
+
+
     api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     api("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     api("androidx.core:core-ktx:1.3.1")
@@ -53,6 +58,9 @@ dependencies {
 
     api("com.squareup.retrofit2:retrofit:$retrofitVersion")
     api("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+    api(loggingInterceptor)
+    api(okhttp)
+    api(okhttpSignpost)
 
     //room
     api("androidx.room:room-runtime:$roomVersion")

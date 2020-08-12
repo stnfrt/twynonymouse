@@ -6,12 +6,18 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
+import id.twynonymouse.BuildConfig
 import id.twynonymouse.core.api.BaseApi
 import id.twynonymouse.core.interactor.LoginInteract
 import id.twynonymouse.core.interactor.UserInteract
 import id.twynonymouse.core.utils.SharedPref
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer
+import se.akerfeldt.okhttp.signpost.SigningInterceptor
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -37,11 +43,27 @@ class BaseModule {
     ) = SharedPref(pref, editor)
 
     @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl("https://private-b50edc-funn.apiary-mock.com/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
+    fun provideRetrofit(): Retrofit {
+        val logInterceptor = HttpLoggingInterceptor()
+        logInterceptor.level = HttpLoggingInterceptor.Level.HEADERS
+        logInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+
+        val consumer =
+            OkHttpOAuthConsumer(BuildConfig.TWITTER_CONSUMER, BuildConfig.TWITTER_CONSUMER_SECRET)
+        consumer.setTokenWithSecret(BuildConfig.TWITTER_TOKEN, BuildConfig.TWITTER_TOKEN_SECRET)
+
+        val client = OkHttpClient.Builder()
+            .addInterceptor(logInterceptor)
+            .addInterceptor(SigningInterceptor(consumer))
+            .build()
+
+        return Retrofit.Builder()
+            .client(client)
+            .baseUrl(BuildConfig.TWITTER_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
 
     @Provides
     @Singleton

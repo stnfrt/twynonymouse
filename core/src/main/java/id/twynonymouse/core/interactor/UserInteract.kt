@@ -12,4 +12,6 @@ class UserInteract @Inject constructor(
     fun getUserInfo(): TwitterUserResponse {
         return pref.getUser()
     }
+
+    suspend fun postTweet(newTweet: String)  = baseApi.postTweet(newTweet)
 }

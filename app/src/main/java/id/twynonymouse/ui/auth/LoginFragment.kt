@@ -82,6 +82,7 @@ class LoginFragment : RainbowCakeFragment<LoginViewState, LoginViewModel>() {
     }
 
     private fun initVar() {
+        provider.addCustomParameter("lang", "id")
         FirebaseApp.initializeApp(mActivity)
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseAuth.currentUser.apply {

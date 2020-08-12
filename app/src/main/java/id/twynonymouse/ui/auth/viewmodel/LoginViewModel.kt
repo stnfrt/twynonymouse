@@ -4,6 +4,7 @@ import co.zsmb.rainbowcake.base.RainbowCakeViewModel
 import com.google.firebase.auth.AuthResult
 import id.twynonymouse.core.model.response.TwitterUserResponse
 import id.twynonymouse.core.utils.SharedPref
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
@@ -45,6 +46,9 @@ class LoginViewModel @Inject constructor(
                 created_at = this?.get("created_at") as String?
             )
             pref.saveUser(user)
+        }
+        result?.credential?.zza().toString().apply {
+            Timber.d(this +" blalallala")
         }
         viewState = UserSaved
     }

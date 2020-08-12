@@ -7,11 +7,13 @@ plugins {
     id("kotlin-android")
     id("com.google.gms.google-services")
 }
+val baseUrlString =  "TWITTER_BASE_URL"
 val consumerString =  "TWITTER_CONSUMER"
 val consumerSecretString =  "TWITTER_CONSUMER_SECRET"
 val tokenString =  "TWITTER_TOKEN"
 val tokenSecretString ="TWITTER_TOKEN_SECRET"
 
+val baseURL = gradleLocalProperties(rootDir).getProperty(baseUrlString)
 val consumer = gradleLocalProperties(rootDir).getProperty(consumerString)
 val consumerSecret = gradleLocalProperties(rootDir).getProperty(consumerSecretString)
 val token = gradleLocalProperties(rootDir).getProperty(tokenString)
@@ -39,12 +41,14 @@ android {
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
             )
+            buildConfigField("String", baseUrlString, baseURL)
             buildConfigField("String", consumerString, consumer)
             buildConfigField("String", consumerSecretString, consumerSecret)
             buildConfigField("String", tokenString, token)
             buildConfigField("String", tokenSecretString, tokenSecret)
         }
         getByName("debug"){
+            buildConfigField("String", baseUrlString, baseURL)
             buildConfigField("String", consumerString, consumer)
             buildConfigField("String",consumerSecretString, consumerSecret)
             buildConfigField("String", tokenString, token)
