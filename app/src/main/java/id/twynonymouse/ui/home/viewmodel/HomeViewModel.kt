@@ -37,14 +37,14 @@ class HomeViewModel @Inject constructor(
     }
 
 
-    private fun refreshTweetList()  = execute{
+    fun refreshTweetList()  = execute{
         try {
             viewState = LoadingGetTweetList
             viewState = SuccessGetTweetList(homePresenter.getListTweet())
         }catch (e:Throwable){
             var errMessage = e.message
             if (e is HttpException) Gson().fromJson(e.response()?.errorBody()?.string().default(), ErrorResponse::class.java)
-                .let { errMessage = it.errors?.map { it?.message }.toString()}
+                .let { errorResponse -> errMessage = errorResponse.errors?.map { it?.message }.toString()}
             viewState = ErrorGetTweetList(errMessage)
         }
     }

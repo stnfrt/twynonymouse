@@ -13,7 +13,6 @@ data class TwitterUserResponse(
     val profile_image_url: String? = null,
     val profile_use_background_image: Boolean? = null,
     val screen_name: String? = null,
-    val id: Long? = null,
     val name: String? = null,
     val following: Boolean? = null,
     val notifications: Boolean? = null,

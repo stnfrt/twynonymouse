@@ -8,7 +8,6 @@ import dagger.Module
 import dagger.Provides
 import id.twynonymouse.BuildConfig
 import id.twynonymouse.core.api.BaseApi
-import id.twynonymouse.core.interactor.LoginInteract
 import id.twynonymouse.core.interactor.UserInteract
 import id.twynonymouse.core.utils.SharedPref
 import okhttp3.OkHttpClient
@@ -17,7 +16,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer
 import se.akerfeldt.okhttp.signpost.SigningInterceptor
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -72,8 +70,4 @@ class BaseModule {
     @Provides
     @Singleton
     fun provideUserInteract(baseApi: BaseApi, pref: SharedPref) = UserInteract(baseApi, pref)
-
-    @Provides
-    @Singleton
-    fun provideLoginInteract(baseApi: BaseApi) = LoginInteract(baseApi)
 }

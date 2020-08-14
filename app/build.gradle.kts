@@ -29,7 +29,7 @@ android {
         minSdkVersion(19)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.1-dev"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
     }
@@ -95,6 +95,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
 
     //module
@@ -116,8 +117,4 @@ dependencies {
     kapt("com.google.dagger:dagger-android-processor:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
     api("androidx.room:room-compiler:$roomVersion")
-
-
-    api("io.coil-kt:coil:0.11.0")
-
 }

@@ -13,7 +13,7 @@ android {
         minSdkVersion(19)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.1-dev"
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -45,6 +45,7 @@ dependencies {
     api(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     api("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     api("androidx.core:core-ktx:1.3.1")
+    api("io.coil-kt:coil:0.11.0")
 
     //hilt di
     api("com.google.dagger:dagger-android:$daggerVersion")
