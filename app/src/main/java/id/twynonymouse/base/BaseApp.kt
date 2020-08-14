@@ -1,4 +1,4 @@
-package id.twynonymouse
+package id.twynonymouse.base
 
 import android.app.Activity
 import co.zsmb.rainbowcake.config.Loggers
@@ -8,6 +8,7 @@ import co.zsmb.rainbowcake.timber.TIMBER
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import id.twynonymouse.BuildConfig
 import id.twynonymouse.di.BaseComponent
 import id.twynonymouse.di.DaggerBaseComponent
 import timber.log.Timber

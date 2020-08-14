@@ -6,7 +6,7 @@ import co.zsmb.rainbowcake.dagger.RainbowCakeModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
-import id.twynonymouse.BaseApp
+import id.twynonymouse.base.BaseApp
 import javax.inject.Singleton
 
 @Singleton

@@ -1,9 +1,23 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
+val baseUrlString =  "TWITTER_BASE_URL"
+val consumerString =  "TWITTER_CONSUMER"
+val consumerSecretString =  "TWITTER_CONSUMER_SECRET"
+val tokenString =  "TWITTER_TOKEN"
+val tokenSecretString ="TWITTER_TOKEN_SECRET"
+
+val baseURL = gradleLocalProperties(rootDir).getProperty(baseUrlString)
+val consumer = gradleLocalProperties(rootDir).getProperty(consumerString)
+val consumerSecret = gradleLocalProperties(rootDir).getProperty(consumerSecretString)
+val token = gradleLocalProperties(rootDir).getProperty(tokenString)
+val tokenSecret = gradleLocalProperties(rootDir).getProperty(tokenSecretString)
 
 android {
     compileSdkVersion(30)
@@ -15,17 +29,30 @@ android {
         minSdkVersion(19)
         targetSdkVersion(30)
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.1-dev"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes {
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
             )
+            buildConfigField("String", baseUrlString, baseURL)
+            buildConfigField("String", consumerString, consumer)
+            buildConfigField("String", consumerSecretString, consumerSecret)
+            buildConfigField("String", tokenString, token)
+            buildConfigField("String", tokenSecretString, tokenSecret)
+        }
+        getByName("debug"){
+            buildConfigField("String", baseUrlString, baseURL)
+            buildConfigField("String", consumerString, consumer)
+            buildConfigField("String",consumerSecretString, consumerSecret)
+            buildConfigField("String", tokenString, token)
+            buildConfigField("String", tokenSecretString, "$tokenSecret")
         }
     }
 
@@ -37,6 +64,17 @@ android {
     // For Kotlin projects
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    packagingOptions {
+        exclude("META-INF/DEPENDENCIES")
+        exclude("META-INF/LICENSE")
+        exclude("META-INF/LICENSE.txt")
+        exclude("META-INF/license.txt")
+        exclude("META-INF/NOTICE")
+        exclude("META-INF/NOTICE.txt")
+        exclude("META-INF/notice.txt")
+        exclude("META-INF/ASL2.0")
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -50,6 +88,15 @@ dependencies {
     val rainbowCakeVersion = "1.0.0"
     val coroutinesVersion = "1.3.7"
     val daggerVersion = "2.15"
+    val roomVersion = "2.2.5"
+    val constraintLayoutVersion = "1.1.3"
+
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
 
     //module
     api(project(":core"))
@@ -64,9 +111,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
+    //google
+    implementation("com.google.firebase:firebase-auth:19.3.2")
+
     kapt("com.google.dagger:dagger-android-processor:$daggerVersion")
     kapt("com.google.dagger:dagger-compiler:$daggerVersion")
-
-    api("io.coil-kt:coil:0.11.0")
-
+    api("androidx.room:room-compiler:$roomVersion")
 }

@@ -1,4 +1,4 @@
-package id.twynonymouse.home.viewmodel
+package id.twynonymouse.ui.home.viewmodel
 
 import co.zsmb.rainbowcake.withIOContext
 import id.twynonymouse.core.interactor.UserInteract
@@ -9,4 +9,8 @@ class HomePresenter @Inject constructor(private val userInteract: UserInteract) 
     suspend fun getData() = withIOContext {
         userInteract.getUserInfo()
     }
+
+    suspend fun postTweet(newTweet: String) = userInteract.postTweet(newTweet)
+
+    suspend fun getListTweet() = userInteract.getListTweet()
 }
